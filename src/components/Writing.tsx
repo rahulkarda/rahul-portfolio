@@ -6,7 +6,7 @@ export default function Writing() {
   return (
     <div id="writing">
       {/* Sticky label */}
-      <div className="min-h-[25vh] flex flex-col items-center justify-center text-center px-4 sticky top-[12.5%]">
+      <div className="min-h-[25vh] flex flex-col items-center justify-center text-center px-4 sticky top-[12.5%] z-10 bg-[var(--bg)]">
         <p className="text-sm uppercase tracking-widest opacity-40 mb-2">
           (I also write things)
         </p>

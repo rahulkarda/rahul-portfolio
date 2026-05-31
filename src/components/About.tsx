@@ -2,7 +2,7 @@ export default function About() {
   return (
     <div id="about">
       {/* Sticky label */}
-      <div className="min-h-[25vh] flex flex-col items-center justify-center text-center px-4 sticky top-[12.5%]">
+      <div className="min-h-[25vh] flex flex-col items-center justify-center text-center px-4 sticky top-[12.5%] z-10 bg-[var(--bg)]">
         <p className="text-sm uppercase tracking-widest opacity-40 mb-2">
           (the human behind the code)
         </p>
@@ -33,16 +33,24 @@ export default function About() {
           <div className="max-w-[480px] lg:max-w-[400px] mb-12 lg:mb-0">
             <p className="mb-6 leading-relaxed opacity-80">
               <span className="font-display font-black uppercase">I&apos;m Rahul:</span>{" "}
-              an engineer who builds things at the intersection of AI and software. I care about making ML systems that are actually reliable, debuggable, and useful beyond the demo.
+              an ML engineer based in Bangalore, India. I build things at the
+              intersection of machine learning and software — production pipelines,
+              LLM-powered products, and open-source developer tools.
             </p>
             <p className="mb-6 leading-relaxed opacity-80">
-              My work spans production ML pipelines, LLM-powered products, full-stack web apps, and open-source developer tools. Currently at SAP Labs in Bangalore — and always building something on the side.
+              Currently at <span className="font-semibold opacity-100">SAP Labs</span>.
+              Previously a full-stack developer, which means I can take an idea
+              from model training all the way to a deployed product.
             </p>
             <p className="mb-6 leading-relaxed opacity-80">
-              I finished my M.Tech in Computer Science from BITS Pilani, which gave me both the theory to understand why things work and the obsession with making them work in production.
+              M.Tech in Software Engineering from{" "}
+              <span className="font-semibold opacity-100">BITS Pilani</span> —
+              which gave me the theory to understand why things work and the
+              stubbornness to make them work in production.
             </p>
-            <p className="mb-10 leading-relaxed opacity-80">
-              I&apos;m open to interesting freelance projects, collaborations, and conversations. If you&apos;re building something in the AI space, I&apos;d love to hear about it.
+            <p className="mb-8 leading-relaxed opacity-80">
+              Outside of work: chess, badminton, reading, investing, and automating
+              anything that can be automated.
             </p>
 
             <div className="flex flex-wrap gap-3">
@@ -69,20 +77,20 @@ export default function About() {
             <div className="border border-[var(--panel-text)]/20">
               {[
                 { label: "Current role", value: "ML Engineer, SAP Labs" },
-                { label: "Education", value: "M.Tech CS, BITS Pilani" },
+                { label: "Previously", value: "Full-Stack Developer" },
+                { label: "Education", value: "M.Tech SE, BITS Pilani" },
                 { label: "Location", value: "Bangalore, India" },
-                { label: "GitHub followers", value: "294" },
-                { label: "Public repos", value: "31" },
+                { label: "Interests", value: "Chess · Badminton · Investing · Reading · Automation" },
                 { label: "Status", value: "Open to freelance" },
               ].map(({ label, value }) => (
                 <div
                   key={label}
                   className="flex justify-between items-start px-5 py-4 border-b border-[var(--panel-text)]/10 last:border-b-0"
                 >
-                  <span className="text-xs uppercase tracking-widest opacity-40">
+                  <span className="text-xs uppercase tracking-widest opacity-40 flex-shrink-0 mr-4">
                     {label}
                   </span>
-                  <span className="text-sm font-medium text-right max-w-[60%]">
+                  <span className="text-sm font-medium text-right">
                     {value}
                   </span>
                 </div>

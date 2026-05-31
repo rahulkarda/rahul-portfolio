@@ -14,9 +14,9 @@ export default function FeaturedProjects() {
   return (
     <div id="work">
       {/* Sticky section label */}
-      <div className="min-h-[30vh] flex flex-col items-center justify-center text-center px-4 sticky top-[12.5%]">
+      <div className="min-h-[30vh] flex flex-col items-center justify-center text-center px-4 sticky top-[12.5%] z-10 bg-[var(--bg)]">
         <p className="text-sm uppercase tracking-widest opacity-40 mb-2">
-          (three things I&apos;m proud of)
+          (three projects I&apos;m proud of)
         </p>
         <h2
           className="font-display font-bold leading-tight"
