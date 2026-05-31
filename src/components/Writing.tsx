@@ -1,93 +1,85 @@
-"use client";
-
-import { useState } from "react";
-import { ExternalLink } from "lucide-react";
-import { AnimateInView, staggerItemVariants } from "./AnimateInView";
-import { motion } from "framer-motion";
 import { writingPosts } from "@/data/skills";
 import { accentMap } from "@/data/projects";
-import { cn } from "@/lib/utils";
+import { ExternalLink } from "lucide-react";
 
 export default function Writing() {
-  const [hovered, setHovered] = useState<number | null>(null);
-
   return (
-    <section id="writing" className="py-24 px-6 border-t border-border/40">
-      <div className="max-w-6xl mx-auto">
-        <AnimateInView className="mb-14 flex items-end justify-between">
-          <div>
-            <p className="text-xs font-medium tracking-widest uppercase text-accent-purple mb-3">
-              Writing
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-text-primary">
-              From the Blog
-            </h2>
-            <p className="text-text-secondary mt-3 text-base">
-              Thoughts on building AI systems and shipping products.
-            </p>
-          </div>
-          <a
-            href="https://rahulkarda.github.io/the-daily-wick/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-1.5 text-sm text-text-secondary hover:text-accent-cyan transition-colors duration-200 pb-1 border-b border-border hover:border-accent-cyan/40"
-          >
-            All posts
-            <ExternalLink size={13} />
-          </a>
-        </AnimateInView>
+    <div id="writing">
+      {/* Sticky label */}
+      <div className="min-h-[25vh] flex flex-col items-center justify-center text-center px-4 sticky top-[12.5%]">
+        <p className="text-sm uppercase tracking-widest opacity-40 mb-2">
+          (I also write things)
+        </p>
+        <h2
+          className="font-display font-bold leading-tight"
+          style={{ fontSize: "clamp(1.75rem, 5vw, 3.5rem)" }}
+        >
+          From the Blog
+        </h2>
+      </div>
 
-        <AnimateInView stagger className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {writingPosts.map((post, i) => {
+      {/* Light panel */}
+      <div className="mx-4 mb-4 p-6 md:p-12 border border-[var(--border)]">
+        <span className="font-bold text-lg opacity-40">Recent writing:</span>
+        <h2
+          className="font-display font-bold uppercase leading-none mt-2 mb-16"
+          style={{ fontSize: "clamp(2rem, 6vw, 5rem)" }}
+        >
+          Thoughts on building
+          <br />
+          AI &amp; shipping products.
+        </h2>
+
+        <div className="flex flex-col gap-0 border-t border-[var(--border)]">
+          {writingPosts.map((post) => {
             const accent = accentMap[post.accent];
-            const isHovered = hovered === i;
             return (
-              <motion.a
+              <a
                 key={post.title}
                 href={post.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                variants={staggerItemVariants}
-                onHoverStart={() => setHovered(i)}
-                onHoverEnd={() => setHovered(null)}
-                className="block p-6 rounded-2xl border bg-bg-card transition-all duration-300 group"
-                style={{
-                  borderColor: isHovered ? accent.hex : "#333333",
-                  boxShadow: isHovered ? accent.glow : "none",
-                }}
+                className="group flex flex-col sm:flex-row sm:items-start gap-4 py-8 border-b border-[var(--border)] hover:bg-[var(--text)]/[0.03] transition-colors px-2 -mx-2"
               >
-                <div
-                  className={cn(
-                    "text-xs font-medium uppercase tracking-widest mb-4 transition-colors duration-200",
-                    isHovered ? accent.text : "text-text-secondary"
-                  )}
-                >
-                  {new Date(post.date).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
+                <div className="flex-1">
+                  <p
+                    className="text-xs uppercase font-bold tracking-widest mb-2"
+                    style={{ color: accent.hex }}
+                  >
+                    {new Date(post.date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                    })}
+                  </p>
+                  <h3 className="font-display font-extrabold text-xl md:text-2xl uppercase leading-tight mb-2 group-hover:opacity-70 transition-opacity">
+                    {post.title}
+                  </h3>
+                  <p className="text-sm opacity-50 leading-relaxed max-w-lg">
+                    {post.excerpt}
+                  </p>
                 </div>
-                <h3 className="text-base font-semibold text-text-primary leading-snug mb-3 group-hover:text-white transition-colors">
-                  {post.title}
-                </h3>
-                <p className="text-sm text-text-secondary leading-relaxed">
-                  {post.excerpt}
-                </p>
                 <div
-                  className={cn(
-                    "flex items-center gap-1.5 mt-5 text-xs font-medium transition-colors duration-200",
-                    isHovered ? accent.text : "text-text-secondary"
-                  )}
+                  className="flex items-center gap-1.5 text-sm uppercase font-bold tracking-widest mt-2 sm:mt-1 flex-shrink-0"
+                  style={{ color: accent.hex }}
                 >
-                  Read more
-                  <ExternalLink size={12} />
+                  Read <ExternalLink size={13} />
                 </div>
-              </motion.a>
+              </a>
             );
           })}
-        </AnimateInView>
+        </div>
+
+        <div className="mt-10">
+          <a
+            href="https://rahulkarda.github.io/the-daily-wick/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-sm uppercase font-bold tracking-widest px-6 py-3 border-2 border-[var(--text)] text-[var(--text)] hover:bg-[var(--text)] hover:text-[var(--bg)] transition-all duration-200"
+          >
+            View The Archive →
+          </a>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }

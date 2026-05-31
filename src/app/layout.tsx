@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
   display: "swap",
 });
 
@@ -25,8 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Rahul Karda — ML Engineer & Full-Stack Developer",
-    description:
-      "ML Engineer at SAP Labs. M.Tech CS from BITS Pilani. Building AI systems and SaaS products.",
+    description: "ML Engineer at SAP Labs. M.Tech CS from BITS Pilani.",
     images: ["/og-image.png"],
     creator: "@rahulkarda2002",
   },
@@ -38,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body className="min-h-screen antialiased">{children}</body>
     </html>
   );

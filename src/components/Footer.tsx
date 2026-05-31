@@ -1,35 +1,18 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-border/40 px-6 py-6">
-      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-text-secondary">
-        <span>Rahul Karda &copy; {new Date().getFullYear()}</span>
+    <footer className="border-t border-[var(--border)] px-6 py-5">
+      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs uppercase tracking-widest opacity-40">
+        <span>© {new Date().getFullYear()} Rahul Karda</span>
         <span>
-          Built with{" "}
-          <a
-            href="https://nextjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-accent-cyan transition-colors"
-          >
-            Next.js
-          </a>{" "}
-          &amp;{" "}
-          <a
-            href="https://tailwindcss.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-accent-cyan transition-colors"
-          >
-            Tailwind
-          </a>
+          Built with Next.js &amp; Tailwind
         </span>
         <a
-          href="https://github.com/rahulkarda"
+          href="https://github.com/rahulkarda/rahul-portfolio"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-accent-cyan transition-colors"
+          className="hover:opacity-100 transition-opacity"
         >
-          @rahulkarda
+          View Source →
         </a>
       </div>
     </footer>
