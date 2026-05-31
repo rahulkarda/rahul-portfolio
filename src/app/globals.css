@@ -1,26 +1,48 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+
+  --color-bg-dark: #0a0a0a;
+  --color-bg-card: #1a1a1a;
+  --color-border: #333333;
+  --color-text-primary: #e5e5e5;
+  --color-text-secondary: #999999;
+  --color-accent-cyan: #00d9ff;
+  --color-accent-magenta: #ff006e;
+  --color-accent-purple: #9d4edd;
+  --color-accent-lime: #39ff14;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --bg-dark: #0a0a0a;
+  --bg-card: #1a1a1a;
+  --border-color: #333333;
+  --text-primary: #e5e5e5;
+  --text-secondary: #999999;
+  --accent-cyan: #00d9ff;
+  --accent-magenta: #ff006e;
+  --accent-purple: #9d4edd;
+  --accent-lime: #39ff14;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: rgba(0, 217, 255, 0.2);
+  color: #e5e5e5;
+}
+
+* {
+  box-sizing: border-box;
 }
