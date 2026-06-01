@@ -15,6 +15,7 @@
   --color-panel-border: rgba(240,236,228,0.15);
 }
 
+/* Light mode (default) */
 :root {
   --bg: #f0ece4;
   --text: #111111;
@@ -23,6 +24,16 @@
   --accent: #00d9ff;
   --accent-2: #ff006e;
   --accent-3: #9d4edd;
+  --border: rgba(17,17,17,0.15);
+}
+
+/* Dark mode — panels invert relative to dark base */
+[data-theme="dark"] {
+  --bg: #111111;
+  --text: #f0ece4;
+  --panel-bg: #f0ece4;
+  --panel-text: #111111;
+  --border: rgba(240,236,228,0.15);
 }
 
 html { scroll-behavior: smooth; }
@@ -33,6 +44,7 @@ body {
   font-family: var(--font-inter), -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 ::selection {
