@@ -27,13 +27,16 @@
   --border: rgba(17,17,17,0.15);
 }
 
-/* Dark mode — panels invert relative to dark base */
+/* Dark mode — deep navy base, slate panels, accents stay vivid */
 [data-theme="dark"] {
-  --bg: #111111;
-  --text: #f0ece4;
-  --panel-bg: #f0ece4;
-  --panel-text: #111111;
-  --border: rgba(240,236,228,0.15);
+  --bg: #0d1117;
+  --text: #e2e8f0;
+  --panel-bg: #1e2a3a;
+  --panel-text: #e2e8f0;
+  --accent: #00d9ff;
+  --accent-2: #ff006e;
+  --accent-3: #a78bfa;
+  --border: rgba(226,232,240,0.10);
 }
 
 html { scroll-behavior: smooth; }
