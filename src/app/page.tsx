@@ -7,12 +7,16 @@ import Writing from "@/components/Writing";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ScrollBrain from "@/components/ScrollBrain";
 
 export default function Home() {
   return (
     <>
       <Nav />
-      <main>
+      {/* Fixed brain behind everything */}
+      <ScrollBrain />
+      {/* Content scrolls over the brain */}
+      <main className="relative z-10">
         <Hero />
         <FeaturedProjects />
         <ProjectGrid />
