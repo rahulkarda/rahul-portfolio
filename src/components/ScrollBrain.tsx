@@ -1,217 +1,200 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-// Each section maps to a set of floating objects + a label
 const SECTIONS = [
   {
     id: "work",
     label: "Featured Work",
     objects: [
-      { emoji: "⚙️",  x: "-28%", y: "-95%",  rotate: -15, delay: 0    },
-      { emoji: "🚀",  x: "22%",  y: "-115%", rotate: 12,  delay: 0.08 },
-      { emoji: "📦",  x: "-5%",  y: "-130%", rotate: -5,  delay: 0.15 },
+      { emoji: "⚙️", offsetX: -70, offsetY: -110, rotate: -15, delay: 0 },
+      { emoji: "🚀", offsetX: 55,  offsetY: -135, rotate: 12,  delay: 0.08 },
+      { emoji: "📦", offsetX: -10, offsetY: -160, rotate: -5,  delay: 0.15 },
     ],
   },
   {
     id: "skills",
     label: "Skills",
     objects: [
-      { emoji: "🧠",  x: "-30%", y: "-100%", rotate: -10, delay: 0    },
-      { emoji: "🤖",  x: "18%",  y: "-120%", rotate: 8,   delay: 0.08 },
-      { emoji: "💻",  x: "-8%",  y: "-140%", rotate: -6,  delay: 0.15 },
+      { emoji: "🧠", offsetX: -65, offsetY: -115, rotate: -10, delay: 0 },
+      { emoji: "🤖", offsetX: 50,  offsetY: -140, rotate: 8,   delay: 0.08 },
+      { emoji: "💻", offsetX: -12, offsetY: -165, rotate: -6,  delay: 0.15 },
     ],
   },
   {
     id: "writing",
     label: "Writing",
     objects: [
-      { emoji: "📖",  x: "-26%", y: "-95%",  rotate: -12, delay: 0    },
-      { emoji: "✍️",  x: "20%",  y: "-118%", rotate: 10,  delay: 0.08 },
-      { emoji: "💡",  x: "-4%",  y: "-135%", rotate: 4,   delay: 0.15 },
+      { emoji: "📖", offsetX: -68, offsetY: -110, rotate: -12, delay: 0 },
+      { emoji: "✍️", offsetX: 52,  offsetY: -133, rotate: 10,  delay: 0.08 },
+      { emoji: "💡", offsetX: -8,  offsetY: -158, rotate: 4,   delay: 0.15 },
     ],
   },
   {
     id: "about",
     label: "About",
     objects: [
-      { emoji: "♟️",  x: "-32%", y: "-98%",  rotate: -8,  delay: 0    },
-      { emoji: "🏸",  x: "24%",  y: "-116%", rotate: 14,  delay: 0.08 },
-      { emoji: "📈",  x: "-6%",  y: "-138%", rotate: -3,  delay: 0.15 },
+      { emoji: "♟️", offsetX: -72, offsetY: -112, rotate: -8,  delay: 0 },
+      { emoji: "🏸", offsetX: 58,  offsetY: -130, rotate: 14,  delay: 0.08 },
+      { emoji: "📈", offsetX: -10, offsetY: -155, rotate: -3,  delay: 0.15 },
     ],
   },
   {
     id: "contact",
     label: "Contact",
     objects: [
-      { emoji: "🐱",  x: "-28%", y: "-100%", rotate: -10, delay: 0,    isCat: true },
-      { emoji: "📬",  x: "22%",  y: "-115%", rotate: 8,   delay: 0.08 },
-      { emoji: "🤝",  x: "-4%",  y: "-132%", rotate: -5,  delay: 0.15 },
+      { emoji: "🐱", offsetX: -60, offsetY: -118, rotate: -10, delay: 0, isCat: true },
+      { emoji: "📬", offsetX: 52,  offsetY: -138, rotate: 8,   delay: 0.08 },
+      { emoji: "🤝", offsetX: -8,  offsetY: -160, rotate: -5,  delay: 0.15 },
     ],
   },
 ];
 
+const DEFAULT_OBJECTS = [
+  { emoji: "👨‍💻", offsetX: -72, offsetY: -115, rotate: -10, delay: 0 },
+  { emoji: "🔬",   offsetX: 55,  offsetY: -138, rotate: 8,   delay: 0.1 },
+  { emoji: "⚡",   offsetX: -8,  offsetY: -158, rotate: -5,  delay: 0.18 },
+];
+
 function FloatingObject({
-  emoji, x, y, rotate, delay, isCat, visible,
+  emoji, offsetX, offsetY, rotate, delay, isCat,
 }: {
-  emoji: string; x: string; y: string; rotate: number; delay: number;
-  isCat?: boolean; visible: boolean;
+  emoji: string; offsetX: number; offsetY: number;
+  rotate: number; delay: number; isCat?: boolean;
 }) {
   const [meow, setMeow] = useState(false);
 
   useEffect(() => {
-    if (isCat && visible) {
-      const t = setTimeout(() => setMeow(true), 800);
-      return () => clearTimeout(t);
-    }
-    setMeow(false);
-  }, [isCat, visible]);
+    if (!isCat) return;
+    const t = setTimeout(() => setMeow(true), 900);
+    return () => clearTimeout(t);
+  }, [isCat]);
 
   return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          key={emoji}
-          initial={{ opacity: 0, scale: 0.3, y: "20px" }}
-          animate={
-            isCat && meow
-              ? {
-                  opacity: 1, scale: 1,
-                  rotate: [rotate, rotate + 14, rotate - 14, rotate + 8, rotate - 8, rotate],
-                  transition: { duration: 0.6, repeat: Infinity, repeatDelay: 1.2 },
-                }
-              : { opacity: 1, scale: 1, rotate, transition: { duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] } }
-          }
-          exit={{ opacity: 0, scale: 0.3, transition: { duration: 0.25 } }}
-          className="absolute text-4xl select-none pointer-events-none"
-          style={{ left: "50%", top: "50%", translateX: x, translateY: y }}
-        >
-          {emoji}
-          {/* Meow bubble */}
-          <AnimatePresence>
-            {isCat && meow && (
-              <motion.span
-                key="meow"
-                initial={{ opacity: 0, scale: 0.5, y: 4 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                className="absolute -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-display font-black uppercase tracking-widest bg-[var(--text)] text-[var(--bg)] px-2 py-0.5 rounded"
-              >
-                Meow! 🐾
-              </motion.span>
-            )}
-          </AnimatePresence>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.2, y: 24 }}
+      animate={
+        isCat && meow
+          ? {
+              opacity: 1, scale: 1,
+              rotate: [rotate, rotate + 16, rotate - 16, rotate + 8, rotate - 8, rotate],
+              transition: { duration: 0.55, repeat: Infinity, repeatDelay: 1.4, ease: "easeInOut" },
+            }
+          : { opacity: 1, scale: 1, rotate, y: 0, transition: { duration: 0.4, delay, ease: [0.22, 1, 0.36, 1] } }
+      }
+      exit={{ opacity: 0, scale: 0.2, y: 16, transition: { duration: 0.2 } }}
+      className="absolute text-3xl select-none pointer-events-none"
+      style={{
+        // offsetX/Y are px offsets from the skull-opening centre
+        left: `calc(50% + ${offsetX}px)`,
+        top: `calc(38% + ${offsetY}px)`,
+      }}
+    >
+      {emoji}
+      <AnimatePresence>
+        {isCat && meow && (
+          <motion.span
+            key="meow"
+            initial={{ opacity: 0, scale: 0.5, y: 4 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] font-display font-black uppercase tracking-widest bg-[var(--text)] text-[var(--bg)] px-2 py-0.5 rounded"
+          >
+            Meow! 🐾
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 }
 
 export default function ScrollBrain() {
-  const containerRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
-  // Watch which section is in viewport
   useEffect(() => {
-    const ids = SECTIONS.map((s) => s.id);
     const observers: IntersectionObserver[] = [];
-
-    ids.forEach((id) => {
+    SECTIONS.forEach(({ id }) => {
       const el = document.getElementById(id);
       if (!el) return;
       const obs = new IntersectionObserver(
-        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
-        { threshold: 0.3 }
+        ([e]) => { if (e.isIntersecting) setActiveSection(id); },
+        { threshold: 0.25 }
       );
       obs.observe(el);
       observers.push(obs);
     });
-
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  const currentSection = SECTIONS.find((s) => s.id === activeSection);
+  const current = SECTIONS.find((s) => s.id === activeSection);
+  const objects = current?.objects ?? DEFAULT_OBJECTS;
 
   return (
-    // Fixed container — sits behind everything, centered
+    // Pinned bottom-right, small, fully pointer-events-none, behind content
     <div
-      ref={containerRef}
-      className="fixed inset-0 flex items-center justify-center pointer-events-none z-0"
+      className="fixed bottom-0 right-8 z-[1] pointer-events-none select-none"
+      style={{ width: 160, height: 220 }}
       aria-hidden="true"
     >
-      <div className="relative w-[280px] h-[380px] select-none">
+      <div className="relative w-full h-full">
 
-        {/* ── HEAD: simple CSS face ── */}
-        <div className="absolute inset-0 flex flex-col items-center">
-
-          {/* Skull top (open) */}
-          <div
-            className="w-[200px] h-[90px] rounded-t-full border-2 border-[var(--text)]/20 bg-[var(--bg)] relative"
-            style={{ marginTop: 40 }}
-          >
-            {/* Open skull cut */}
-            <div className="absolute bottom-0 left-0 right-0 h-[18px] bg-[var(--bg)]" />
-          </div>
-
-          {/* Face */}
-          <div
-            className="w-[200px] bg-[var(--bg)] border-2 border-[var(--text)]/20 rounded-b-[60px] relative flex flex-col items-center"
-            style={{ height: 200 }}
-          >
-            {/* Eyes */}
-            <div className="flex gap-10 mt-8">
-              <div className="w-5 h-5 rounded-full border-2 border-[var(--text)]/40 flex items-center justify-center">
-                <div className="w-2 h-2 rounded-full bg-[var(--text)]/60" />
-              </div>
-              <div className="w-5 h-5 rounded-full border-2 border-[var(--text)]/40 flex items-center justify-center">
-                <div className="w-2 h-2 rounded-full bg-[var(--text)]/60" />
-              </div>
-            </div>
-
-            {/* Nose */}
-            <div className="w-px h-7 bg-[var(--text)]/15 mt-3" />
-
-            {/* Mouth — smile */}
-            <div
-              className="mt-2 w-10 h-5 border-b-2 border-[var(--text)]/30 rounded-b-full"
-            />
-
-            {/* Section label inside face */}
-            <AnimatePresence mode="wait">
-              {currentSection && (
-                <motion.p
-                  key={currentSection.id}
-                  initial={{ opacity: 0, y: 4 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -4 }}
-                  transition={{ duration: 0.25 }}
-                  className="absolute bottom-4 text-[9px] uppercase tracking-widest font-bold opacity-30 text-center"
-                >
-                  {currentSection.label}
-                </motion.p>
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
-
-        {/* ── FLOATING OBJECTS per section ── */}
-        {currentSection?.objects.map((obj) => (
-          <FloatingObject
-            key={`${currentSection.id}-${obj.emoji}`}
-            {...obj}
-            visible={true}
+        {/* ── FACE (transparent fill so it never blocks text) ── */}
+        <svg
+          viewBox="0 0 160 220"
+          className="absolute inset-0 w-full h-full"
+          style={{ opacity: 0.18 }}
+        >
+          {/* Skull top — open at the top */}
+          <path
+            d="M30,110 Q30,40 80,40 Q130,40 130,110"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
           />
-        ))}
+          {/* Face sides + chin */}
+          <path
+            d="M30,110 L30,160 Q30,185 55,190 L105,190 Q130,185 130,160 L130,110"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+          {/* Left eye */}
+          <circle cx="62" cy="130" r="8" fill="none" stroke="currentColor" strokeWidth="1.5" />
+          <circle cx="62" cy="130" r="3" fill="currentColor" opacity="0.5" />
+          {/* Right eye */}
+          <circle cx="98" cy="130" r="8" fill="none" stroke="currentColor" strokeWidth="1.5" />
+          <circle cx="98" cy="130" r="3" fill="currentColor" opacity="0.5" />
+          {/* Nose */}
+          <line x1="80" y1="142" x2="80" y2="158" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+          {/* Mouth */}
+          <path d="M66,168 Q80,178 94,168" fill="none" stroke="currentColor" strokeWidth="1.5" />
+        </svg>
 
-        {/* Default objects when no section active (hero) */}
-        {!currentSection && (
-          <>
-            <FloatingObject emoji="👨‍💻" x="-30%" y="-90%"  rotate={-10} delay={0}    visible={true} />
-            <FloatingObject emoji="🔬"   x="18%"  y="-112%" rotate={8}   delay={0.1}  visible={true} />
-            <FloatingObject emoji="⚡"   x="-5%"  y="-128%" rotate={-5}  delay={0.18} visible={true} />
-          </>
-        )}
+        {/* ── FLOATING OBJECTS ── */}
+        <AnimatePresence mode="wait">
+          {objects.map((obj) => (
+            <FloatingObject
+              key={`${activeSection ?? "default"}-${obj.emoji}`}
+              {...obj}
+            />
+          ))}
+        </AnimatePresence>
+
+        {/* Section label */}
+        <AnimatePresence mode="wait">
+          {current && (
+            <motion.p
+              key={current.id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute bottom-1 left-0 right-0 text-center text-[8px] uppercase tracking-widest opacity-30 font-bold"
+            >
+              {current.label}
+            </motion.p>
+          )}
+        </AnimatePresence>
 
       </div>
     </div>
