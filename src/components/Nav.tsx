@@ -23,7 +23,7 @@ export default function Nav() {
       <button
         onClick={() => setOpen(true)}
         aria-label="Open menu"
-        className="fixed top-0 left-0 z-[9000] w-14 h-14 flex flex-col justify-center items-center gap-[5px] bg-[var(--bg)] pointer-events-auto transition-colors duration-300"
+        className="fixed top-0 left-0 z-[99999] w-14 h-14 flex flex-col justify-center items-center gap-[5px] bg-[var(--bg)] pointer-events-auto transition-colors duration-300"
       >
         <span className="w-6 h-[2px] bg-[var(--text)] transition-colors duration-300" />
         <span className="w-6 h-[2px] bg-[var(--text)] transition-colors duration-300" />
@@ -34,7 +34,7 @@ export default function Nav() {
       <button
         onClick={toggle}
         aria-label="Toggle theme"
-        className="fixed top-0 right-0 z-[9000] w-14 h-14 flex items-center justify-center bg-[var(--bg)] text-[var(--text)] opacity-60 hover:opacity-100 transition-all duration-300"
+        className="fixed top-0 right-0 z-[99999] w-14 h-14 flex items-center justify-center bg-[var(--bg)] text-[var(--text)] opacity-60 hover:opacity-100 transition-all duration-300"
       >
         {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
       </button>

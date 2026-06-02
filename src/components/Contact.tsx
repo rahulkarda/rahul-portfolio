@@ -5,7 +5,7 @@ export default function Contact() {
     <div id="contact">
       {/* Sticky label */}
       <div
-        className="min-h-[50vh] flex flex-col items-center justify-center text-center px-4 sticky top-[12.5%]"
+        className="py-16 flex flex-col items-center justify-center text-center px-16 sticky top-0 z-10 bg-[var(--bg)]"
       >
         <p className="text-sm uppercase tracking-widest opacity-40 mb-2">
           (that&apos;s it, you&apos;ve scrolled enough)

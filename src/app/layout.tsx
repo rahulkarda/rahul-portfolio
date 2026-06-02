@@ -20,6 +20,10 @@ export const metadata: Metadata = {
   description:
     "ML Engineer at SAP Labs. M.Tech SE from BITS Pilani. Building AI systems, SaaS products, and open-source tools.",
   metadataBase: new URL("https://rahulkarda.dev"),
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+  },
   openGraph: {
     type: "website",
     title: "Rahul Karda — ML Engineer & Full-Stack Developer",
