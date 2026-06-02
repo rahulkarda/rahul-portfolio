@@ -12,7 +12,7 @@ export default function Hero() {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
         <p className="text-sm uppercase tracking-widest font-medium opacity-50 mb-6">
-          ML Engineer · Bangalore, India · BITS Pilani M.Tech SE
+          ML Engineer · Bangalore, India
         </p>
         <h1
           className="font-display font-bold leading-[1.0] tracking-tight mb-6"
