@@ -18,7 +18,7 @@ export default function Skills() {
       </div>
 
       {/* Inverted panel */}
-      <div className="mx-4 mb-4 p-6 md:p-12 bg-[var(--panel-bg)] text-[var(--panel-text)]">
+      <div className="mb-4 p-6 md:p-12 bg-[var(--panel-bg)] text-[var(--panel-text)]">
         <span className="font-bold text-lg opacity-60">I work with:</span>
         <h2
           className="font-display font-bold uppercase leading-none mt-2 mb-16"

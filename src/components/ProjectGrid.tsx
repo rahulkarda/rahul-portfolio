@@ -26,7 +26,7 @@ export default function ProjectGrid() {
       </div>
 
       {/* Light panel — no color inversion, grid layout */}
-      <div className="mx-4 mb-4 p-6 md:p-12 border border-[var(--border)]">
+      <div className="mb-4 p-6 md:p-12 border border-[var(--border)]">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[var(--border)]">
           {gridProjects.map((project) => {
             const accent = accentMap[project.accent];

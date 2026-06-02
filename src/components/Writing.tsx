@@ -19,7 +19,7 @@ export default function Writing() {
       </div>
 
       {/* Light panel */}
-      <div className="mx-4 mb-4 p-6 md:p-12 border border-[var(--border)]">
+      <div className="mb-4 p-6 md:p-12 border border-[var(--border)]">
         <span className="font-bold text-lg opacity-40">Recent writing:</span>
         <h2
           className="font-display font-bold uppercase leading-none mt-2 mb-16"
