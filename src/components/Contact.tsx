@@ -51,7 +51,7 @@ export default function Contact() {
             </a>
           </span>
         </div>
-        <div className="mt-8 mb-[100vh]">
+        <div className="mt-8 mb-12">
           <a
             href="mailto:rahulkarda2002@gmail.com"
             className="inline-block text-sm uppercase font-bold tracking-widest px-8 py-4 border-2 border-[var(--text)] text-[var(--text)] hover:bg-[var(--text)] hover:text-[var(--bg)] transition-all duration-200"
