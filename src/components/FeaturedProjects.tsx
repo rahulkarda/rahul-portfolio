@@ -1,6 +1,7 @@
 import { featuredProjects } from "@/data/projects";
 import { accentMap } from "@/data/projects";
 import { ExternalLink } from "lucide-react";
+import DistortThumb from "./DistortThumb";
 
 function GithubIcon({ size = 14 }: { size?: number }) {
   return (
@@ -99,25 +100,13 @@ export default function FeaturedProjects() {
                   </div>
                 </div>
 
-                {/* Thumbnail — right column, sticky */}
+                {/* Thumbnail — right column, sticky, distorts on hover */}
                 <div className="lg:sticky lg:top-16 max-w-[500px] w-full">
-                  <div
-                    className="w-full aspect-video rounded-sm overflow-hidden"
-                    style={{ background: project.gradient }}
-                  >
-                    <div
-                      className="w-full h-full flex items-center justify-center"
-                      style={{
-                        background: `radial-gradient(ellipse at 40% 50%, ${accent.hex}22 0%, transparent 70%)`,
-                      }}
-                    >
-                      <span
-                        className="font-display font-black uppercase text-4xl md:text-6xl opacity-10 tracking-tighter"
-                      >
-                        {project.title.split(" ")[0]}
-                      </span>
-                    </div>
-                  </div>
+                  <DistortThumb
+                    gradient={project.gradient}
+                    accentHex={accent.hex}
+                    label={project.title.split(" ")[0]}
+                  />
                 </div>
               </div>
             );

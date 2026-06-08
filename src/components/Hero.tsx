@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import TextReveal from "./TextReveal";
 
 export default function Hero() {
   return (
@@ -18,9 +19,9 @@ export default function Hero() {
           className="font-display font-bold leading-[1.0] tracking-tight mb-6"
           style={{ fontSize: "clamp(3rem, 10vw, 8rem)" }}
         >
-          Rahul
+          <TextReveal stagger={0.04} y={32}>Rahul</TextReveal>
           <br />
-          Karda
+          <TextReveal stagger={0.04} y={32}>Karda</TextReveal>
         </h1>
         <p className="text-base md:text-lg opacity-60 max-w-md mx-auto leading-relaxed mb-10">
           Building AI systems, SaaS products, and open-source tools.
