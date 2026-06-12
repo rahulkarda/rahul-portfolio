@@ -57,27 +57,19 @@ export const techStack = [
 
 export const writingPosts = [
   {
-    title: "How I Built a Fully-Automated Daily Blog",
+    title: "Why Systems Outlast Motivation",
     excerpt:
-      "A walkthrough of The Daily Wick — Gemini 2.5 Flash writing, Astro SSG, GitHub Actions cron, and Buttondown newsletter delivery, all for free.",
-    date: "2025-05-15",
-    href: "https://rahulkarda.github.io/the-daily-wick/",
+      "Motivation is a visitor. Systems are the house. The case for building habits that don't depend on how you feel.",
+    date: "2026-06-02",
+    href: "https://rahulkarda.github.io/the-daily-wick/articles/2026-06-02-why-systems-outlast-motivation/",
     accent: "cyan" as AccentColor,
   },
   {
-    title: "Memtrail: Git for AI Agent Memory",
+    title: "What First Principles Actually Mean",
     excerpt:
-      "Why long-running AI agents need memory version control, and how I built a zero-dependency Python library to solve it.",
-    date: "2025-04-22",
-    href: "https://github.com/rahulkarda/memtrail",
+      "Most people talk about first principles thinking. Almost nobody does it. Here's the difference.",
+    date: "2026-06-09",
+    href: "https://rahulkarda.github.io/the-daily-wick/articles/2026-06-09-what-first-principles-actually-mean/",
     accent: "magenta" as AccentColor,
-  },
-  {
-    title: "RAG From Scratch: What I Learned",
-    excerpt:
-      "Building a retrieval-augmented generation pipeline without LangChain taught me more about embeddings, chunking, and retrieval quality than any tutorial.",
-    date: "2025-03-10",
-    href: "https://rahulkarda.github.io/the-daily-wick/",
-    accent: "purple" as AccentColor,
   },
 ];
