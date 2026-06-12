@@ -5,6 +5,7 @@ import ProjectGrid from "@/components/ProjectGrid";
 import Skills from "@/components/Skills";
 import Writing from "@/components/Writing";
 import About from "@/components/About";
+import Awards from "@/components/Awards";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Marquee from "@/components/Marquee";
@@ -49,6 +50,7 @@ export default function Home() {
         <GithubWall />
         <Writing />
         <About />
+        <Awards />
         <Contact />
       </main>
       <Footer />

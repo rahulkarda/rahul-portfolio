@@ -80,6 +80,7 @@ export default function About() {
                 { label: "Previously", value: "Full-Stack Developer" },
                 { label: "Education", value: "M.Tech SE, BITS Pilani" },
                 { label: "Location", value: "Bangalore, India" },
+                { label: "Chess ELO", value: "600" },
                 { label: "Interests", value: "Chess · Badminton · Investing · Reading · Automation" },
                 { label: "Status", value: "Open to freelance" },
               ].map(({ label, value }) => (
